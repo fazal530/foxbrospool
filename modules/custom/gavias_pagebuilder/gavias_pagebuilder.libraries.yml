@@ -1,0 +1,55 @@
+gavias_pagebuilder.assets.admin:
+  version: 1.x
+  css:
+    theme:
+      vendor/font-awesome/css/font-awesome.min.css: {}
+      vendor/notify/styles/metro/notify-metro.css: {}
+      assets/admin/css/admin.css: {}
+      assets/admin/css/libs.css: {}
+  js:
+    vendor/jquery-migrate.min.js: {}
+    assets/admin/js/main.js: { scope: footer }
+    assets/admin/js/app.min.js: { scope: footer }
+  dependencies:
+    - imce/drupal.imce.input
+    - core/jquery
+    - gavias_linoor/jquery-legacy-compat
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+    - core/drupal.dialog
+    - core/drupal.ajax
+    - core/drupal.dialog.ajax
+
+gavias_pagebuilder.assets.node:
+  version: 1.x
+  css:
+    theme:
+      vendor/notify/styles/metro/notify-metro.css: {}
+      vendor/font-awesome/css/font-awesome.min.css: {}
+      assets/admin/css/admin.css: {}
+      assets/admin/css/libs.css: {}
+  js:
+    vendor/notify/notify.min.js: {}
+    assets/admin/js/main.js: { scope: footer }
+    assets/admin/js/node.js: { scope: footer }
+    assets/admin/js/app.min.js: { scope: footer }
+  dependencies:
+    - imce/drupal.imce.input
+    - core/jquery
+    - gavias_linoor/jquery-legacy-compat
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+    - core/drupal.dialog
+    - core/drupal.ajax
+    - core/drupal.dialog.ajax
+
+gavias_pagebuilder.assets.frontend:
+  version: 1.x
+  css: 
+    theme:
+      assets/frontend/css/frontend.css: {}
+  js:
+    vendor/skrollr.min.js: { scope: footer }
+    vendor/main.js: { scope: footer }

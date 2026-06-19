@@ -1,0 +1,31 @@
+@import "../node_modules/sassdash/index";
+
+@import "../node_modules/yoastseo/css/snippet-editor";
+@import "../node_modules/yoastseo/css/colors";
+@import "../node_modules/yoastseo/css/analysis";
+@import "../node_modules/yoastseo/css/loading-dialog";
+@import "../node_modules/yoastseo/css/tooltips";
+
+.assessment-results__mark:disabled {
+  display: none;
+}
+
+.yoast-analysis-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: end;
+
+  .form-item {
+    margin: 0;
+  }
+
+  input.form-submit {
+    margin: 0 0 0 1rem;
+  }
+}
+
+.yoast-analysis__snippet {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

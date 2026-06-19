@@ -1,0 +1,29 @@
+{
+  "name": "swisnl/yoast_analysis",
+  "description": "Drupal module to analyse entities using the Yoast SEO text analysis and assessment library",
+  "type": "drupal-module",
+  "license": "GPL-2.0+",
+  "minimum-stability": "dev",
+  "homepage": "https://github.com/swisnl/yoast_analysis",
+  "authors": [
+    {
+      "name": "Rolf van de Krol",
+      "email": "rvandekrol@swis.nl",
+      "role": "Maintainer"
+    }
+  ],
+  "repositories":[
+    {
+      "type": "composer",
+      "url": "https://packages.drupal.org/8"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "drupal/core": "^9 || ^10 || ^11"
+  },
+  "require-dev": {
+    "drupal/coder": "^8.3",
+    "phpmd/phpmd": "2.*"
+  }
+}

@@ -1,0 +1,61 @@
+{{ attach_library('gavias_linoor/photoswipe') }}
+
+<div class="pswp-galler-wrapper">
+  <div class="head">
+    {{ content.field_body }}
+  </div>
+
+  <div class="pswp-gallery equal-grid pswp-gallery--single-column" id="my-gallery-{{ paragraph.id() }}">
+    {% for item in content.field_gallery_images %}
+      {% set file = item['#item'].entity %}
+      {% if file %}
+        {% set image_url = file_url(file.uri.value) %}
+        {% set alt = item['#item'].alt %}
+        {% set title = item['#item'].title %}
+        
+        {# ✔ Correct way to get width & height #}
+        {% set width = item['#item'].width %}
+        {% set height = item['#item'].height %}
+
+        <a href="{{ image_url }}"
+           class="equal-grid__item"
+           data-pswp-width="{{ width }}"
+           data-pswp-height="{{ height }}"
+           target="_blank">
+
+          <img src="{{ image_url }}" alt="{{ alt }}" loading="lazy">
+          <span class="equal-grid__caption">{{ title }}</span>
+        </a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+
+
+{#{{ attach_library('gavias_linoor/photoswipe') }}#}
+
+{#<div class="pswp-galler-wrapper">#}
+{#  <div class="head">#}
+{#    {{content.field_body}}#}
+{#  </div>#}
+
+{#  <div class="pswp-gallery equal-grid pswp-gallery--single-column" id="my-gallery-{{ paragraph.id() }}">#}
+{#    {% for item in content.field_gallery_images %}#}
+{#    {% set file = item['#item'].entity %}#}
+{#    {% if file %}#}
+{#      {% set image_url = file_url(file.uri.value) %}#}
+{#      {% set alt = item['#item'].alt %}#}
+{#       {% set title = item['#item'].title %}#}
+{#      <a href="{{ image_url }}"#}
+{#         class="equal-grid__item"#}
+{#          data-pswp-width="200" #}
+{#          data-pswp-height="300" #}
+{#         target="_blank">#}
+{#        <img src="{{ image_url }}" alt="{{ alt }}" loading="lazy">#}
+{#        <span class="equal-grid__caption">{{ title }}</span>#}
+{#      </a>#}
+{#    {% endif %}#}
+{#  {% endfor %}#}
+{#</div>#}
+{#</div>#}

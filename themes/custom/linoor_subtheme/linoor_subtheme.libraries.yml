@@ -1,0 +1,16 @@
+global-styling:
+  version: VERSION
+  header: true
+  css:
+    theme:
+      css/style.css: {}
+      css/custom.css: {}
+      css/toggle.css: {}
+  js:
+    js/main.js: {}
+    js/theme-toggle.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once
+    - gavias_linoor/global-styling

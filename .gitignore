@@ -1,0 +1,39 @@
+/vendor/
+/core/
+/sites/default/files/
+/sites/*/files/
+/web/sites/*/files/
+
+.DS_Store
+.idea/
+.vscode/
+
+error_log
+
+# DB backups
+*.sql
+*.sql.gz
+db.sql.gz
+.ddev/db-backups/
+
+# Drupal core & dependencies
+/vendor/
+/core/
+
+# Files directory
+/sites/*/files/
+/web/sites/*/files/
+
+# DB backups
+*.sql
+*.sql.gz
+db.sql.gz
+
+# System files
+.DS_Store
+__MACOSX
+error_log
+
+# IDE
+.vscode/
+.idea/

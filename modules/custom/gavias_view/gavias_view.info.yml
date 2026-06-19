@@ -1,0 +1,7 @@
+name: Gavias Custom View
+type: module
+description: Gavias Custom View
+core_version_requirement: ^11 || ^10 || ^9
+package: gavias
+dependencies:
+  - image

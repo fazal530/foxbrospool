@@ -1,0 +1,62 @@
+<?php
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Render\Element;
+use Drupal\yoast_analysis\EntityTypeInfo;
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function yoast_analysis_entity_type_alter(array &$entity_types) {
+  return \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(EntityTypeInfo::class)
+    ->entityTypeAlter($entity_types);
+}
+
+/**
+ * Implements hook_entity_operation().
+ */
+function yoast_analysis_entity_operation(EntityInterface $entity) {
+  return \Drupal::service('class_resolver')
+    ->getInstanceFromDefinition(EntityTypeInfo::class)
+    ->entityOperation($entity);
+}
+
+/**
+ * Implements hook_theme().
+ */
+function yoast_analysis_theme() {
+  return [
+    'yoast_analysis' => [
+      'render element' => 'elements',
+    ],
+    'yoast_analysis_snippet_preview' => [
+      'variables' => [],
+    ],
+  ];
+}
+
+/**
+ * Prepares variables for Yoast Analysis overview.
+ */
+function template_preprocess_yoast_analysis(&$variables) {
+  $variables += ['content' => []];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+/**
+ * Prepares variables for Yoast Analysis Snippet Preview.
+ */
+function template_preprocess_yoast_analysis_snippet_preview(&$variables) {
+  $variables['section_id'] = Html::getUniqueId('yoast-analysis__snippet_section');
+  $variables['view_id'] = Html::getUniqueId('yoast-analysis__snippet_view');
+  $variables['title_container_id'] = Html::getUniqueId('yoast-analysis__snippet_title_container');
+  $variables['render_title_container_id'] = Html::getUniqueId('yoast-analysis__snippet_render_title_container');
+  $variables['url_container_id'] = Html::getUniqueId('yoast-analysis__snippet_url_container');
+  $variables['snippet_cite_id'] = Html::getUniqueId('yoast-analysis__snippet_cite');
+  $variables['meta_container_id'] = Html::getUniqueId('yoast-analysis__snippet_meta_container');
+  $variables['snippet_meta_id'] = Html::getUniqueId('yoast-analysis__snippet_meta');
+}

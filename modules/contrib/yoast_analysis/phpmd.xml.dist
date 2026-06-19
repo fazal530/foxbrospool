@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="project">
+  <description>PHP Mess Detector configuration for this project.</description>
+
+  <rule ref="rulesets/codesize.xml"/>
+
+  <rule ref="rulesets/controversial.xml">
+    <exclude name="CamelCaseParameterName"/>
+    <exclude name="CamelCaseVariableName"/>
+  </rule>
+
+  <rule ref="rulesets/design.xml">
+    <exclude name="CouplingBetweenObjects"/>
+  </rule>
+  <rule ref="rulesets/design.xml/CouplingBetweenObjects">
+    <properties>
+      <property name="maximum" value="20"/>
+    </properties>
+  </rule>
+
+  <rule ref="rulesets/naming.xml">
+    <exclude name="LongVariable"/>
+    <exclude name="ShortVariable"/>
+  </rule>
+  <rule ref="rulesets/naming.xml/LongVariable">
+    <properties>
+      <property name="maximum" value="25"/>
+    </properties>
+  </rule>
+
+  <rule ref="rulesets/unusedcode.xml">
+    <exclude name="UnusedFormalParameter"/>
+    <exclude name="UnusedLocalVariable"/>
+  </rule>
+  <rule ref="rulesets/unusedcode.xml/UnusedLocalVariable">
+    <properties>
+      <property name="allow-unused-foreach-variables" value="true"/>
+    </properties>
+  </rule>
+</ruleset>

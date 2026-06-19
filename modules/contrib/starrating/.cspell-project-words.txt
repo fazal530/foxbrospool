@@ -1,0 +1,4 @@
+drupalicon
+starline
+thumbsup
+Fivestar

@@ -1,0 +1,77 @@
+#ddev-generated
+# If you remove the ddev-generated line above you
+# are responsible for maintaining this file. DDEV will not then
+# update it, for example if you add `additional_hostnames`, etc.
+
+http:
+  routers:
+    public-html-web-80-http:
+      entrypoints:
+        - http-8080
+      rule: HostRegexp(`^public-html\.ddev\.site$`)
+      
+      service: "public-html-web-80"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "public-html-redirectHttps"
+    public-html-web-8025-http:
+      entrypoints:
+        - http-8025
+      rule: HostRegexp(`^public-html\.ddev\.site$`)
+      
+      service: "public-html-web-8025"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "public-html-redirectHttps"
+    
+    
+    
+    public-html-web-80-https:
+      entrypoints:
+        - http-8443
+      rule: HostRegexp(`^public-html\.ddev\.site$`)
+      
+      service: "public-html-web-80"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    public-html-web-8025-https:
+      entrypoints:
+        - http-8026
+      rule: HostRegexp(`^public-html\.ddev\.site$`)
+      
+      service: "public-html-web-8025"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
+
+  middlewares:
+    public-html-redirectHttps:
+      redirectScheme:
+        scheme: https
+        permanent: true
+
+  services:
+    public-html-web-80:
+      loadbalancer:
+        servers:
+          - url: http://ddev-public-html-web:80
+        
+    public-html-web-8025:
+      loadbalancer:
+        servers:
+          - url: http://ddev-public-html-web:8025
+        
+    
+    
+    
+
+tls:
+  certificates:
+    - certFile: /mnt/ddev-global-cache/traefik/certs/public-html.crt
+      keyFile: /mnt/ddev-global-cache/traefik/certs/public-html.key

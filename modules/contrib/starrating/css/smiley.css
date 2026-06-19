@@ -1,0 +1,63 @@
+.smiley-off {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("smiley.png") no-repeat 0 0;
+}
+.smiley1-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("smiley.png") no-repeat 0 -14px;
+}
+.smiley2-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("smiley.png") no-repeat 0 -28px;
+}
+.smiley3-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("smiley.png") no-repeat 0 -42px;
+}
+.smiley4-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("smiley.png") no-repeat 0 -56px;
+}
+.smiley5-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("smiley.png") no-repeat 0 -70px;
+}
+.smiley6-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("smiley.png") no-repeat 0 -84px;
+}
+.smiley7-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("smiley.png") no-repeat 0 -98px;
+}
+.smiley8-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("smiley.png") no-repeat 0 -112px;
+}

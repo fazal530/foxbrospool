@@ -1,0 +1,9 @@
+<div class="review-carosel owl-carousel">
+   {% for row in rows %}
+     {% set row_classes = [ default_row_class ? 'item' ] %}
+     <div{{ row.attributes.addClass(row_classes) }}>
+       {{ row.content }}
+     </div>
+   {% endfor %}
+</div>
+

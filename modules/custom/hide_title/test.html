@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hover Card</title>
+<style>
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  font-family: 'Open Sans', sans-serif;
+  color: #333;
+  background: #f8f8f8;
+  margin: 0;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  background: white;
+  color: currentColor;
+  text-decoration: none;
+  overflow: hidden;
+  transition: color 0.15s cubic-bezier(.51,.92,.24,1);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+}
+
+.card__head {
+  position: relative;
+  padding-top: 70%;
+}
+
+.card__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  background-image: url('https://images.unsplash.com/photo-1553787762-b5f5721f3270?ixlib=rb-1.2.1&auto=format&fit=crop&w=2100&q=80');
+  transform-origin: top center;
+  transition: transform 0.4s cubic-bezier(.51,.92,.24,1), opacity 0.4s cubic-bezier(.51,.92,.24,1);
+}
+
+.card__image::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  opacity: 0.5;
+  background: linear-gradient(30deg, rgba(26,42,99,0.85), rgba(26,42,99,0.5));
+  transition: opacity 0.4s cubic-bezier(.51,.92,.24,1);
+}
+
+.card__author {
+  position: absolute;
+  padding: 2em;
+  left: 0;
+  bottom: 0;
+  color: white;
+  transition: transform 0.4s cubic-bezier(.51,.92,.24,1);
+}
+
+.card__body {
+  position: relative;
+  padding: 2em;
+  transition: transform 0.4s cubic-bezier(.51,.92,.24,1);
+}
+
+.card__headline {
+  font-weight: 400;
+  margin: 0 0 0.8em 0;
+}
+
+.card__text {
+  line-height: 1.5;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.card__foot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 2em 2em;
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(.51,.92,.24,1);
+}
+
+.card__link {
+  color: currentColor;
+  text-decoration: none;
+  border-bottom: 2px solid #b5272d;
+}
+
+.card__border {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 6px;
+  background: #b5272d;
+  transform: scaleY(0);
+  transition: transform 0.4s cubic-bezier(.51,.92,.24,1);
+}
+
+.card.hover {
+  color: white;
+}
+
+.card.hover .card__foot {
+  opacity: 1;
+}
+
+.card.hover .card__border {
+  transform: scaleY(1);
+}
+
+.card.hover .card__image::after {
+  opacity: 1;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+}
+
+.author__image {
+  flex-shrink: 0;
+  margin-right: 1em;
+  width: 56px;
+  height: 56px;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.author__content {
+  display: grid;
+  gap: 0.4em;
+  font-size: 0.9em;
+}
+
+.author__header {
+  margin: 0;
+  font-weight: 600;
+}
+
+.author__subheader {
+  margin: 0;
+  opacity: 0.8;
+}
+</style>
+</head>
+<body>
+
+<a href="#" class="card">
+  <div class="card__head">
+    <div class="card__image"></div>
+    <div class="card__author">
+      <div class="author">
+        <img src="https://s.gravatar.com/avatar/7ff9e93ff25e002bc49f4d69c0c3eac7?s=80" alt="Author of Tobias Reich" class="author__image">
+        <div class="author__content">
+          <p class="author__header">Tobias Reich</p>
+          <p class="author__subheader">Web developer and designer</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card__body">
+    <h2 class="card__headline">Hover me</h2>
+    <p class="card__text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore.</p>
+  </div>
+  <div class="card__foot">
+    <span class="card__link">Read more</span>
+  </div>
+  <div class="card__border"></div>
+</a>
+
+<script>
+const height = (elem) => elem.getBoundingClientRect().height;
+const distance = (elemA, elemB, prop) => elemB.getBoundingClientRect()[prop] - elemA.getBoundingClientRect()[prop];
+const factor = (elemA, elemB, prop) => elemB.getBoundingClientRect()[prop] / elemA.getBoundingClientRect()[prop];
+
+document.querySelectorAll('.card').forEach((elem) => {
+  const head = elem.querySelector('.card__head');
+  const image = elem.querySelector('.card__image');
+  const author = elem.querySelector('.card__author');
+  const body = elem.querySelector('.card__body');
+  const foot = elem.querySelector('.card__foot');
+
+  elem.onmouseenter = () => {
+    elem.classList.add('hover');
+    // const imageScale = 1 + factor(head, body, 'height');
+    // image.style.transform = `scale(${imageScale})`;
+
+    const bodyDistance = height(foot) * -1;
+    body.style.transform = `translateY(${bodyDistance}px)`;
+
+    const authorDistance = distance(head, author, 'height');
+    author.style.transform = `translateY(${authorDistance}px)`;
+  }
+
+  elem.onmouseleave = () => {
+    elem.classList.remove('hover');
+    image.style.transform = 'none';
+    body.style.transform = 'none';
+    author.style.transform = 'none';
+  }
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+  <div class="card__head">
+    <img src="{{ field_image }}" alt="" class="card__image"">
+    <div class="card__author">
+      <div class="author">
+        <div class="author__content"> 
+          <p class="author__header"> {{ title }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card__body">
+       <p class="card__text"> {{ body }}</p>
+  </div>
+  <div class="card__foot">
+    <span class="card__link">{{ view_node }}</span>
+  </div>
+  <div class="card__border"></div>
+
+
+
+
+
+
+<div class="blog">
+  <div class="left-part">
+    <div class="image">
+      {{ field_image }}
+    </div>
+  </div>
+  <div class="right-part">
+    <div class="title">
+      {{ title }}
+    </div>
+  
+    <div class="body">
+      {{ body }}
+    </div>
+    <div class="link">
+      {{ view_node }}
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<div class="portfolio-v1">      
+  <div class="portfolio-content">
+    <div class="portfolio-images">
+<div class="gallery-popup">
+    
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'image_formatter' -->
+<!-- BEGIN OUTPUT from 'themes/custom/gavias_linoor/templates/fields/image-formatter.html.twig' -->
+
+<div class="item-image">
+<a href="/concrete-pool-project">
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'image_style' -->
+<!-- BEGIN OUTPUT from 'core/modules/image/templates/image-style.html.twig' -->
+
+
+<!-- THEME DEBUG -->
+<!-- THEME HOOK: 'image' -->
+<!-- BEGIN OUTPUT from 'core/modules/system/templates/image.html.twig' -->
+<img loading="lazy" src="/sites/default/files/styles/height/public/portfolio-images/DJI_0471.JPG?itok=LXBPewqT" alt="" typeof="foaf:Image">
+
+<!-- END OUTPUT from 'core/modules/system/templates/image.html.twig' -->
+
+
+
+<!-- END OUTPUT from 'core/modules/image/templates/image-style.html.twig' -->
+
+</a>
+</div>
+
+<!-- END OUTPUT from 'themes/custom/gavias_linoor/templates/fields/image-formatter.html.twig' -->
+
+
+            <a href="/sites/default/files/portfolio-images/DJI_0384.JPG" class="image-popup d-none" title=""></a>
+  </div>
+        <a class="link" href="/concrete-pool-project"><i class="fa fa-link"></i></a>
+    </div>
+    <div class="content-inner">
+      <div class="portfolio-information">
+        <div class="category">
+          <div class="field field--name-field-portfolio-tags field--type-entity-reference field--label-hidden field__item"><a href="/taxonomy/term/14" hreflang="en">Concrete Pools</a></div>
+</div>
+        <h2 class="title"> <a href="/concrete-pool-project" rel="bookmark">
+
+<span>Concrete Pool Project</span>
+
+</a> </h2>          
+      </div>    
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

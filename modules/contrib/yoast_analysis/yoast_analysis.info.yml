@@ -1,0 +1,10 @@
+name: 'Yoast Analysis'
+type: module
+description: 'Analyse entities using the Yoast SEO text analysis and assessment library'
+core_version_requirement: ^9.2 || ^10 || ^11
+package: 'Custom'
+
+# Information added by Drupal.org packaging script on 2025-05-13
+version: '1.4.0'
+project: 'yoast_analysis'
+datestamp: 1747140085

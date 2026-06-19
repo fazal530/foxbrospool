@@ -1,0 +1,63 @@
+.starline-off {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("starline.png") no-repeat 0 0;
+}
+.starline1-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("starline.png") no-repeat 0 -14px;
+}
+.starline2-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("starline.png") no-repeat 0 -28px;
+}
+.starline3-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("starline.png") no-repeat 0 -42px;
+}
+.starline4-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("starline.png") no-repeat 0 -56px;
+}
+.starline5-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("starline.png") no-repeat 0 -70px;
+}
+.starline6-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("starline.png") no-repeat 0 -84px;
+}
+.starline7-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("starline.png") no-repeat 0 -98px;
+}
+.starline8-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("starline.png") no-repeat 0 -112px;
+}

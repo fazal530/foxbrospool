@@ -1,0 +1,63 @@
+.movie-off {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("movie.png") no-repeat 0 0;
+}
+.movie1-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("movie.png") no-repeat 0 -14px;
+}
+.movie2-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("movie.png") no-repeat 0 -28px;
+}
+.movie3-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("movie.png") no-repeat 0 -42px;
+}
+.movie4-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("movie.png") no-repeat 0 -56px;
+}
+.movie5-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("movie.png") no-repeat 0 -70px;
+}
+.movie6-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("movie.png") no-repeat 0 -84px;
+}
+.movie7-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("movie.png") no-repeat 0 -98px;
+}
+.movie8-on {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  background: url("movie.png") no-repeat 0 -112px;
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flexbox Grow & Shrink Calculator</title>
+<style>
+  body { font-family: sans-serif; padding: 20px; }
+  .controls button { margin-right: 10px; margin-bottom: 10px; }
+  .container-wrapper { border: 2px solid #333; padding: 10px; margin: 20px 0; }
+  .container {
+    display: flex;
+    background: #eee;
+    overflow: hidden;
+    transition: width 0.3s;
+  }
+  .item {
+    flex: 1 1 100px;
+    background: #3498db;
+    color: white;
+    text-align: center;
+    margin: 5px;
+    padding: 20px;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .item div {
+    font-size: 12px;
+    background: rgba(0,0,0,0.3);
+    padding: 2px 4px;
+    margin-top: 5px;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+
+<h2>Flexbox Grow & Shrink Demo with Math Values</h2>
+
+<div class="controls">
+  <button onclick="setScenario('perfect')">Perfect Fit</button>
+  <button onclick="setScenario('grow')">Extra Space (Grow)</button>
+  <button onclick="setScenario('shrink')">Overflow (Shrink)</button>
+  <button onclick="setScenario('percent')">Container 100%</button>
+  <button onclick="setScenario('nested')">Nested 100%</button>
+</div>
+
+<div>
+  <label>Container width: 
+    <input type="range" id="widthSlider" min="200" max="1000" value="600" oninput="updateWidth(this.value)"> 
+    <span id="widthValue">600</span>px
+  </label>
+</div>
+
+<div class="container-wrapper" id="wrapper" style="width:auto;">
+  <div class="container" id="flexContainer" style="width:600px;">
+    <div class="item" id="item1">
+      Item 1
+      <div id="info1"></div>
+    </div>
+    <div class="item" id="item2">
+      Item 2
+      <div id="info2"></div>
+    </div>
+    <div class="item" id="item3">
+      Item 3
+      <div id="info3"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const container = document.getElementById('flexContainer');
+const wrapper = document.getElementById('wrapper');
+const widthValue = document.getElementById('widthValue');
+
+const items = [
+  { el: document.getElementById('item1'), info: document.getElementById('info1') },
+  { el: document.getElementById('item2'), info: document.getElementById('info2') },
+  { el: document.getElementById('item3'), info: document.getElementById('info3') },
+];
+
+let scenarioData = [];
+
+// Update container width
+function updateWidth(value) {
+  if(container.style.width.includes('%')) return; // skip if percent
+  container.style.width = value + 'px';
+  widthValue.textContent = value;
+  updateFlexInfo();
+}
+
+// Set scenario
+function setScenario(type) {
+  wrapper.style.width = 'auto';
+  switch(type) {
+    case 'perfect':
+      container.style.width = '600px';
+      scenarioData = [
+        {basis:200, grow:1, shrink:1},
+        {basis:200, grow:1, shrink:1},
+        {basis:200, grow:1, shrink:1},
+      ];
+      break;
+    case 'grow':
+      container.style.width = '600px';
+      scenarioData = [
+        {basis:100, grow:1, shrink:0},
+        {basis:100, grow:2, shrink:0},
+        {basis:100, grow:1, shrink:0},
+      ];
+      break;
+    case 'shrink':
+      container.style.width = '400px';
+      scenarioData = [
+        {basis:200, grow:1, shrink:1},
+        {basis:200, grow:2, shrink:1},
+        {basis:200, grow:1, shrink:1},
+      ];
+      break;
+    case 'percent':
+      container.style.width = '100%';
+      scenarioData = [
+        {basis:100, grow:1, shrink:1},
+        {basis:100, grow:2, shrink:1},
+        {basis:100, grow:1, shrink:1},
+      ];
+      break;
+    case 'nested':
+      wrapper.style.width = '50%';
+      container.style.width = '100%';
+      scenarioData = [
+        {basis:100, grow:1, shrink:1},
+        {basis:100, grow:2, shrink:1},
+        {basis:100, grow:1, shrink:1},
+      ];
+      break;
+  }
+
+  // Apply flex values
+  scenarioData.forEach((d,i)=>{
+    items[i].el.style.flex = `${d.grow} ${d.shrink} ${d.basis}px`;
+  });
+
+  updateFlexInfo();
+}
+
+// Compute free space and distribute
+function updateFlexInfo() {
+  const containerWidth = container.getBoundingClientRect().width;
+  const totalBasis = scenarioData.reduce((sum,d)=>sum+d.basis,0);
+  let freeSpace = containerWidth - totalBasis;
+
+  if(freeSpace > 0) {
+    // Grow case
+    const totalGrow = scenarioData.reduce((sum,d)=>sum+d.grow,0);
+    scenarioData.forEach((d,i)=>{
+      const added = totalGrow ? freeSpace * (d.grow/totalGrow) : 0;
+      const final = d.basis + added;
+      items[i].info.innerHTML = 
+        `basis: ${d.basis}px<br>grow: ${d.grow}<br>shrink: ${d.shrink}<br>final: ${final.toFixed(1)}px`;
+    });
+  } else if(freeSpace < 0) {
+    // Shrink case
+    const totalShrinkWeight = scenarioData.reduce((sum,d)=>sum+d.basis*d.shrink,0);
+    scenarioData.forEach((d,i)=>{
+      const reduction = totalShrinkWeight ? Math.abs(freeSpace)*(d.basis*d.shrink/totalShrinkWeight) : 0;
+      const final = d.basis - reduction;
+      items[i].info.innerHTML = 
+        `basis: ${d.basis}px<br>grow: ${d.grow}<br>shrink: ${d.shrink}<br>final: ${final.toFixed(1)}px`;
+    });
+  } else {
+    // Perfect fit
+    scenarioData.forEach((d,i)=>{
+      items[i].info.innerHTML = 
+        `basis: ${d.basis}px<br>grow: ${d.grow}<br>shrink: ${d.shrink}<br>final: ${d.basis}px`;
+    });
+  }
+}
+
+// Update on resize
+window.addEventListener('resize', updateFlexInfo);
+
+// Initialize
+setScenario('perfect');
+</script>
+
+</body>
+</html>

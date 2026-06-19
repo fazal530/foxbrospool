@@ -1,0 +1,3 @@
+yoast_analysis.entities:
+  class: \Drupal\Core\Menu\LocalTaskDefault
+  deriver: \Drupal\yoast_analysis\Plugin\Derivative\YoastAnalysisLocalTask

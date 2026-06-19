@@ -1,0 +1,25 @@
+<div id="{{ section_id }}" class="yoast-section">
+  <section class="snippet-editor__preview">
+    <h3 class="snippet-editor__heading snippet-editor__heading-icon snippet-editor__heading-icon-eye">{% trans %}Google preview{% endtrans %}</h3>
+
+    <div id="{{ view_id }}" class="snippet-editor__view">
+      <div class="snippet_container snippet_container__title snippet-editor__container" id="{{ title_container_id }}">
+        <span class="screen-reader-text">{% trans %}SEO title preview:{% endtrans %}</span>
+        <span class="title" id="{{ render_title_container_id }}">
+          <span class="snippet-title" id="snippet_title"></span>
+        </span>
+      </div>
+      <div class="snippet_container snippet_container__url snippet-editor__container" id="{{ url_container_id }}">
+        <span class="screen-reader-text">{% trans %}Slug preview:{% endtrans %}</span>
+        <span class="urlFull">
+          <cite class="url" id="{{ snippet_cite_id }}"></cite>
+        </span><span class="down_arrow"></span>
+      </div>
+      <div class="snippet_container snippet_container__meta snippet-editor__container" id="{{ meta_container_id }}">
+        <span class="screen-reader-text">{% trans %}Meta description preview:{% endtrans %}</span>
+        <span class="snippet-editor__date"></span>
+        <span class="desc" id="{{ snippet_meta_id }}"></span>
+      </div>
+    </div>
+  </section>
+</div>

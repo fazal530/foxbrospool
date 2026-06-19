@@ -1,0 +1,12 @@
+analysis:
+  version: VERSION
+  css:
+    theme:
+      dist/drupal.css: {}
+  js:
+    dist/drupal.js: { minified: true }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/once

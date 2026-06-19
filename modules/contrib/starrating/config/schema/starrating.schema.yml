@@ -1,0 +1,24 @@
+field.field_settings.starrating:
+  type: mapping
+  label: 'Starrating field settings'
+  mapping:
+    max_value:
+      type: integer
+      label: 'Maximum rating value'
+
+field.formatter.settings.starrating:
+  type: mapping
+  label: 'Star rating formatter settings'
+  mapping:
+    fill_blank:
+      type: integer
+      label: 'Fill with blank icons'
+      default_value: 0
+    icon_type:
+      type: string
+      label: 'Icon type'
+      default_value: 'star'
+    icon_color:
+      type: integer
+      label: 'Icon color'
+      default_value: 1

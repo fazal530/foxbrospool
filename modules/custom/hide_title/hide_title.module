@@ -1,0 +1,26 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+function hide_title_form_node_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $node = $form_state->getFormObject()->getEntity();
+  if ($node instanceof NodeInterface && $node->bundle() === 'finance') {
+    $form['title']['#access'] = FALSE;
+  }
+}
+
+/**
+ * Implements hook_entity_presave().
+ */
+function hide_title_form_entity_presave(\Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'finance') {
+    \Drupal::logger('hide_title_form')->notice('Entity presave hook triggered for finance node.');
+    if (empty($entity->getTitle())) {
+      $entity->setTitle('Finance Record ' . \Drupal::time()->getRequestTime());
+    }
+  }
+}

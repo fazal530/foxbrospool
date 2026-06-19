@@ -1,0 +1,58 @@
+/* header.header-default .call-us, header.header-2 .call-us {
+   display: none !important;
+} */
+/* @media only screen and (max-width: 666px) {
+  header.header-default .call-us, header.header-2 .call-us {
+    display: block !important;
+  }
+} */
+/*This is the temproray solution*/
+.gavias-pagebuilder .alert.alert-warning {
+    display:none !important;
+}
+
+.footer-fifth {
+  .logos-with-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    .logos-with-links__item a {
+      background-color: #fff;
+      display: block;
+      img {
+        width: 100px;
+        height: 50px;
+        object-fit: contain;
+      }
+    }
+  }
+  @media (min-width: 992px) {
+    .logos-with-links {
+      margin-top: 30px;
+    }
+  }
+}
+
+.portfolio.portfolio-single .logos-with-links, .service-block-singe .logos-with-links{
+    display: flex;
+    gap: 100px;
+    padding: 50px;
+    img {
+        -webkit-filter: none;
+        -ms-filter: none;
+        -moz-filter: none;
+    }
+}
+
+.portfolio.portfolio-single .logos-with-links__item, .service-block-singe .logos-with-links__item{
+    flex: 1;
+}
+
+.portfolio.portfolio-single .logos-with-links, .service-block-singe .logos-with-links{
+    display: flex;
+    gap: 100px;
+    padding: 50px;
+}
+
+
+

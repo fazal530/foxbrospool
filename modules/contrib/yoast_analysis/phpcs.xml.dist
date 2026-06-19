@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="project">
+  <description>PHP CodeSniffer configuration for this project.</description>
+
+  <file>css</file>
+  <file>js</file>
+  <file>src</file>
+  <file>templates</file>
+
+  <arg name="extensions" value="css,inc,install,js,module,php,profile,theme,yml"/>
+
+  <rule ref="vendor/drupal/coder/coder_sniffer/Drupal">
+    <exclude name="Drupal.Commenting.FileComment"/>
+    <exclude name="Drupal.Commenting.ClassComment"/>
+    <exclude name="Drupal.Commenting.FunctionComment"/>
+
+    <exclude name="Squiz.CSS.EmptyClassDefinition"/>
+  </rule>
+
+  <rule ref="Drupal.Arrays.Array">
+    <properties>
+      <property name="lineLimit" value="120"/>
+    </properties>
+  </rule>
+
+  <rule ref="Drupal.Commenting.DocComment">
+    <exclude name="Drupal.Commenting.DocComment.MissingShort"/>
+  </rule>
+
+  <rule ref="Drupal.Commenting.VariableComment">
+    <exclude name="Drupal.Commenting.VariableComment.Missing"/>
+  </rule>
+
+  <rule ref="vendor/drupal/coder/coder_sniffer/DrupalPractice">
+  </rule>
+
+</ruleset>

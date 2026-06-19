@@ -1,0 +1,18 @@
+{#
+/**
+ * @file
+ * Theme override for a single node in a printer-friendly outline.
+ *
+ * Available variables:
+ * - node: Fully loaded node.
+ * - depth: Depth of the current node inside the outline.
+ * - title: Node title.
+ * - content: Node content.
+ * - children: All the child nodes recursively rendered through this file.
+ */
+#}
+<article id="node-{{ node.id }}" class="section-{{ depth }}">
+  <h1 class="book-heading">{{ title }}</h1>
+  {{ content }}
+  {{ children }}
+</article>
