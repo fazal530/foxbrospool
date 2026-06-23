@@ -109,6 +109,46 @@ body {
 .card:hover .content {
   transform: translateY(-10px);
 }
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .18s ease, visibility .18s ease;
+  z-index: 1000;
+}
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+.modal {
+  background: #fff;
+  color: #111;
+  padding: 1.25rem;
+  border-radius: 8px;
+  width: 92%;
+  max-width: 520px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  position: relative;
+}
+.modal h2{ margin: 0 0 .5rem 0; }
+.modal p{ margin: 0 0 1rem 0; }
+.modal-close{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -151,6 +191,78 @@ document.querySelectorAll('.card').forEach((card, i) => {
   card.querySelector('::before'); // fallback
 });
 </script>
+</script>
+
+<!-- Booking modal -->
+<div class="modal-overlay" id="bookingModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal" role="document">
+    <button class="modal-close" id="bookingModalClose" aria-label="Close">&times;</button>
+    <h2>Book Online</h2>
+    <p id="modalDescription">Please enter your details to book.</p>
+    <form id="bookingForm">
+      <label>Name<br><input type="text" name="name" required></label><br>
+      <label>Email<br><input type="email" name="email" required></label><br>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+
+<script>
+(function(){
+  const modal = document.getElementById('bookingModal');
+  const closeBtn = document.getElementById('bookingModalClose');
+  const modalDesc = document.getElementById('modalDescription');
+
+  function openModal(title){
+    modalDesc.textContent = title ? 'Booking for: ' + title : 'Please enter your details to book.';
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelector('.page-content').addEventListener('click', function(e){
+    const btn = e.target.closest('.btn');
+    if(!btn) return;
+    const card = btn.closest('.card');
+    const title = card && card.querySelector('.title') ? card.querySelector('.title').textContent : '';
+    if(btn.textContent.trim().toLowerCase().includes('book')){
+      openModal(title);
+    }
+  });
+
+  // Intercept site anchors (e.g. hero section) that link to /contact-us
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('a[href]');
+    if(!a) return;
+    const href = a.getAttribute('href');
+    const text = (a.textContent || '').trim().toLowerCase();
+    // If this link is the Book Online link we'll open the modal instead
+    if(href === '/contact-us' && text.includes('book')){
+      e.preventDefault();
+      // Optional: read a data-title attribute for context
+      const title = a.dataset && a.dataset.title ? a.dataset.title : '';
+      openModal(title || 'Book Online');
+    }
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', function(e){ if(e.target === modal) closeModal(); });
+
+  document.getElementById('bookingForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    alert('Form submitted (demo) — implement real submission.');
+    closeModal();
+  });
+})();
+</script>
+
+</body>
+</html>
 
 </body>
 </html>
