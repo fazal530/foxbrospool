@@ -15,12 +15,50 @@
         width: 100%;
         object-fit: cover;
         aspect-ratio: 1 / 1;
-        border-radius: 20px;
+        border-radius: 20px 20px 0px 0px;
+      }
+    }
+
+    &:hover {
+      .right-part {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+        transition: box-shadow 0.3s ease;
       }
     }
   }
 
+  .right-part {
+    padding: 10px;
+    border-radius: 0px 0px 8px 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+    .link {
+      padding-top: 20px;
+    }
+  }
+
 }
+
+.dark-mode {
+  .blog-list {
+    .blog {
+      &:hover {
+        .right-part {
+          box-shadow: 0 4px 8px rgb(255, 255, 255);
+          transition: box-shadow 0.3s ease;
+        }
+      }
+    }
+
+    .right-part {
+      box-shadow: 0 4px 8px rgb(255 255 255 / 66%);
+    }
+
+  }
+}
+
+
+
 
 .node--type-blog {
   .item-image {
@@ -467,6 +505,7 @@
       grid-template-columns: 1fr 1fr 1fr 1fr;
       gap: 20px;
       padding-top: 30px;
+      row-gap: 40px;
     }
   }
 
@@ -567,11 +606,15 @@
   .top-section {
     position: relative;
     margin-bottom: 40px;
+
     .overlay {
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.4); /* semi-transparent black */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      /* semi-transparent black */
     }
 
     .title {
@@ -579,17 +622,19 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* dark shadow */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      /* dark shadow */
       color: white;
       z-index: 1;
       opacity: 0.8;
 
     }
-    img{
+
+    img {
       width: 100%;
-            height: 60vh;
-            object-fit: cover;
-            object-position: center;
+      height: 60vh;
+      object-fit: cover;
+      object-position: center;
     }
   }
 }
@@ -599,19 +644,22 @@
 
 
 .svg-img {
-    display: block;
-    object-fit: contain;
-    width: 32px;
-    height: 32px;
-    background-image: url('google.svg'); 
-    background-size: cover; /* or contain, depending on your needs */
-    background-repeat: no-repeat;
-    background-position: center;
+  display: block;
+  object-fit: contain;
+  width: 32px;
+  height: 32px;
+  background-image: url('google.svg');
+  background-size: cover;
+  /* or contain, depending on your needs */
+  background-repeat: no-repeat;
+  background-position: center;
 }
-.about-button-wrapper{
+
+.about-button-wrapper {
   position: relative;
 }
-.about-button-wrapper .column-content  {
+
+.about-button-wrapper .column-content {
   position: absolute;
   right: 10%;
   top: 50%;
