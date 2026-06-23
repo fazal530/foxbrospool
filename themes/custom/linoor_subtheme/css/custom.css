@@ -281,6 +281,71 @@
   }
 }
 
+.linoor-booking-modal {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.72);
+  display: none;
+  inset: 0;
+  justify-content: center;
+  padding: 24px;
+  position: fixed;
+  z-index: 99999;
+}
+
+.linoor-booking-modal.is-open {
+  display: flex;
+}
+
+.linoor-booking-modal-open {
+  overflow: hidden;
+}
+
+.linoor-booking-modal__dialog {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  height: min(760px, 90vh);
+  max-width: 980px;
+  overflow: hidden;
+  position: relative;
+  width: min(100%, 980px);
+}
+
+.linoor-booking-modal__close {
+  align-items: center;
+  background: #111;
+  border: 0;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-size: 28px;
+  height: 42px;
+  justify-content: center;
+  line-height: 1;
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  width: 42px;
+  z-index: 1;
+}
+
+.linoor-booking-modal__frame {
+  border: 0;
+  height: 100%;
+  width: 100%;
+}
+
+@media (max-width: 767px) {
+  .linoor-booking-modal {
+    padding: 12px;
+  }
+
+  .linoor-booking-modal__dialog {
+    height: 88vh;
+  }
+}
+
 .pool-contents {
   .left-section {
     flex-basis: 50%;
@@ -542,4 +607,12 @@
     background-size: cover; /* or contain, depending on your needs */
     background-repeat: no-repeat;
     background-position: center;
+}
+.about-button-wrapper{
+  position: relative;
+}
+.about-button-wrapper .column-content  {
+  position: absolute;
+  right: 10%;
+  top: 50%;
 }
