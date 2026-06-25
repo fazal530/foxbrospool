@@ -664,3 +664,8 @@
   right: 10%;
   top: 50%;
 }
+@media (max-width: 768px){
+  .tp-mask-wrap{
+    left: 50% !important;
+  }
+}
