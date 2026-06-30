@@ -10645,6 +10645,7 @@ ul[data-drupal-views-infinite-scroll-pager].pager {
   .gsc-call-to-action.style-v2 .title {
     font-size: 45px;
     line-height: 40px;
+    text-align: center;
   }
 }
 
@@ -13927,6 +13928,10 @@ ul[data-drupal-views-infinite-scroll-pager].pager {
 @media (max-width: 991.98px) {
   .gsc-heading .sub-title {
     font-size: 12px;
+    
+  }
+  .heading-content{
+    padding-inline: 15px;
   }
 }
 
@@ -14617,7 +14622,7 @@ ul[data-drupal-views-infinite-scroll-pager].pager {
 .gsc-image-content.skin-v2 .read-more,
 .gsc-image-content.skin-v4 .read-more {
   text-align: right;
-  margin-top: -30px;
+  margin-top: -40px;
 }
 
 .gsc-image-content.skin-v2 .read-more a,
