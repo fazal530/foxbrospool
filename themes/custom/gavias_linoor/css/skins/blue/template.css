@@ -4115,7 +4115,7 @@ div.error {
 .owl-carousel {
   background: none !important;
   position: relative;
-  max-height: 200px;
+  /* max-height: 200px; */
 }
 
 .owl-carousel .item {
@@ -5027,7 +5027,7 @@ div.error {
 
 .panel {
   background: #fff;
-  padding: 25px 30px;
+  /* padding: 25px 30px; */
   border-radius: 8px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -10189,7 +10189,7 @@ ul[data-drupal-views-infinite-scroll-pager].pager {
 
 @media (max-width: 991.98px) {
   .gbb-row .bb-inner {
-    padding-top: 60px;
+    padding-top: 60px !important;
     padding-bottom: 60px;
   }
 }
@@ -10630,6 +10630,7 @@ ul[data-drupal-views-infinite-scroll-pager].pager {
 @media (max-width: 991.98px) {
   .gsc-call-to-action.style-v2 {
     padding: 50px 15px;
+    height: 400px;
   }
 }
 
@@ -16461,7 +16462,7 @@ body.toolbar-horizontal.toolbar-tray-open .header-default .stuck {
 
 .portfolio-v1 .title {
   letter-spacing: 2.2px;
-  font-size: 22px;
+  font-size: 20px;
   text-transform: uppercase;
 }
 

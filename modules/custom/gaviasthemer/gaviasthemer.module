@@ -38,9 +38,8 @@ function gaviasthemer_render_block($key) {
     ->getViewBuilder('block')
     ->view($block);
 
-return drupal_render($block_content);
-
-  }
+  return \Drupal::service('renderer')->renderRoot($block_content);
+}
 
 /**
  * Implements hook_form_BASE_FORM_ID_alter() for menu_link_content_form.
@@ -274,7 +273,7 @@ function gaviasthemer_form_block_form_alter(&$form, \Drupal\Core\Form\FormStateI
 
       if (\Drupal::moduleHandler()->moduleExists('file')) {
         // Handle file uploads.
-        $validators = array('file_validate_is_image' => array());
+        $validators = array('FileIsImage' => array());
 
         // Check for a new uploaded logo.
         $file = file_save_upload('breadcrumb_background_image', $validators, FALSE, 0);
@@ -287,7 +286,7 @@ function gaviasthemer_form_block_form_alter(&$form, \Drupal\Core\Form\FormStateI
           else {
             // File upload failed.
             $form_state->setValue('breadcrumb_background_image_tmp', '');
-            $form_state->setErrorByName('breadcrumb_background_image_error', $this->t('The logo could not be uploaded.'));
+            $form_state->setErrorByName('breadcrumb_background_image_error', t('The logo could not be uploaded.'));
           }
         }
         $validators = array('file_validate_extensions' => array('ico png gif jpg jpeg apng svg'));
@@ -295,7 +294,7 @@ function gaviasthemer_form_block_form_alter(&$form, \Drupal\Core\Form\FormStateI
     }
   }
 
-  function gaviasthemer_form_block_form_submit(array &$form, FormStateInterface &$form_state) {
+  function gaviasthemer_form_block_form_submit(array &$form, FormStateInterface $form_state) {
     $block = $form_state->getFormObject()->getEntity();
     $_id = $block->ID();
 
@@ -359,8 +358,8 @@ function gaviasthemer_writecache( $folder, $file, $value, $e='css' ){
 */
 function gaviasthemer_entity_view_alter(array &$build, Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
   // Cheking view_mode for node.
-  if ($build['#view_mode'] === 'full' && $entity Instanceof \Drupal\node\NodeInterface) {
-    // Cheking html_head_link on attached tags in head.
+  if ($build['#view_mode'] === 'full' && $entity instanceof \Drupal\node\NodeInterface) {
+    // Checking html_head_link on attached tags in head.
     if (!isset($build['#attached']['html_head_link'])) return;
     // Array to unset.
     $gaviasthemer = [

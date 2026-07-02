@@ -30,6 +30,7 @@
         "drupal/core-vendor-hardening": "^11",
         "drupal/ctools": "^4.0",
         "drupal/entity_reference_revisions": "^1.14",
+        "drupal/field_group": "^4.1@alpha",
         "drupal/geofield": "^10.3",
         "drupal/geolocation": "^3.14",
         "drupal/google_analytics": "^4.0",

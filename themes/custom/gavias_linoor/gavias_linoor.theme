@@ -257,57 +257,34 @@ function gavias_linoor_preprocess_block__system_breadcrumb_block(&$variables){
   
   if (!empty($variables['elements']['#id'])) {
     $block = Block::load($variables['elements']['#id']);
-    if($variables['plugin_id'] == 'system_breadcrumb_block'){
+    if ($block instanceof \Drupal\block\BlockInterface && $variables['plugin_id'] === 'system_breadcrumb_block') {
       $_id = $variables['elements']['#id'];
       $breadcrumb_background_color = $block->getThirdPartySetting('gaviasthemer', 'breadcrumb_background_color');
       $breadcrumb_background_position = $block->getThirdPartySetting('gaviasthemer', 'breadcrumb_background_position');
       $breadcrumb_background_repeat = $block->getThirdPartySetting('gaviasthemer', 'breadcrumb_background_repeat');
       $breadcrumb_color_style = $block->getThirdPartySetting('gaviasthemer', 'breadcrumb_color_style');
       $breadcrumb_background_image_path = \Drupal::config('gaviasthemer.settings')->get('breadcrumb_background_image_path_' . $_id);
-      if($breadcrumb_color_style){
+      if ($breadcrumb_color_style) {
         $text_style = $breadcrumb_color_style;
       }
-      if($breadcrumb_background_color){
+      if ($breadcrumb_background_color) {
         $bg_color = $breadcrumb_background_color;
       }
-      if($breadcrumb_background_position){
+      if ($breadcrumb_background_position) {
         $bg_position = $breadcrumb_background_position;
       }
-      if($breadcrumb_background_repeat){
+      if ($breadcrumb_background_repeat) {
         $bg_repeat = $breadcrumb_background_repeat;
       }
-      if($breadcrumb_background_image_path){
-        //if(!empty($breadcrumb_background_image_path)) {
-         // $bg_image = \Drupal::service('file_url_generator')->generate($breadcrumb_background_image_path->toString());
-          
-        // }
-        // Below code is temproray solution to get different images on breadcrumb
-        // This image is for Projects block
-        if ($_id =='breadcrumbs_2') {
-           $bg_image = base_path() . \Drupal::service('extension.path.resolver')->getPath('theme', 'gavias_linoor') . '/images/breadcrumb-breadcrumb2.jpg';
-        }
-     
-        // This image is for Services block
-        if ($_id =='breadcrumbs_3') {
-           $bg_image = base_path() . \Drupal::service('extension.path.resolver')->getPath('theme', 'gavias_linoor') . '/images/breadcrumb-breadcrumb3.jpg';
-        }
-        
-        // This image is for About us block
-        if ($_id =='breadcrumbs') {
-            $bg_image = base_path() . \Drupal::service('extension.path.resolver')->getPath('theme', 'gavias_linoor') . '/images/breadcrumb-breadcrumb1_0.jpg';
-        }
-        // This image is for Contact us block
-        if ($_id =='linoor_subtheme_breadcrumbs') {
-            $bg_image = base_path() . \Drupal::service('extension.path.resolver')->getPath('theme', 'gavias_linoor') . '/images/breadcrumb-breadcrumb-contact-us.jpg';
-        }
-
-        // Extra code finish here
-     
-        
-        
+      if ($breadcrumb_background_image_path) {
         if ($breadcrumb_background_image_path instanceof \Drupal\Core\Url) {
-          $url_string = $breadcrumb_background_image_path->toString();
-          \Drupal::service('file_url_generator')->generate($url_string);
+          $bg_image = $breadcrumb_background_image_path->toString();
+        }
+        else {
+          $bg_image = \Drupal::service('file_url_generator')->generate($breadcrumb_background_image_path);
+        }
+        if ($bg_image instanceof \Drupal\Core\Url) {
+          $bg_image = $bg_image->toString();
         }
       }
     }
