@@ -1,0 +1,5 @@
+name: YouTube Feed Block
+type: module
+description: Displays latest YouTube videos in a grid.
+package: Custom
+core_version_requirement: ^10 || ^11
