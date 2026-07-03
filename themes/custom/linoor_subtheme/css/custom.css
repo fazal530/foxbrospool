@@ -349,7 +349,7 @@
       border-radius: 20px;
 
       .pool-card {
-        position: relative;
+        /* position: relative; */
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -936,9 +936,9 @@
 }
 
 .path-all-pools #content::before {
-  background:
+  /* background:
     radial-gradient(circle at 82% 28%, rgba(14, 165, 198, 0.2), transparent 32%),
-    linear-gradient(90deg, rgba(3, 10, 20, 0.72), rgba(3, 10, 20, 0.42));
+    linear-gradient(90deg, rgba(3, 10, 20, 0.72), rgba(3, 10, 20, 0.42)); */
   content: "";
   inset: 0;
   pointer-events: none;
@@ -1049,7 +1049,7 @@
 
 .path-all-pools .pool .view-content-wrap .pool-card .image {
   margin: 0 -18px;
-  order: 1;
+  /* order: 1; */
   overflow: hidden;
   position: relative;
 }
@@ -1122,7 +1122,7 @@
 .path-all-pools .pool .view-content-wrap .pool-card-wrapper .button-action {
   bottom: 18px;
   display: flex !important;
-  justify-content: stretch;
+  justify-content: space-between;
   left: 18px;
   margin: 0;
   padding: 0;
